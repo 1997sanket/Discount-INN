@@ -1,0 +1,105 @@
+<!--
+<div class="card bg-light" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class=" card-header">Book</div>
+    <div class="card-body">
+
+
+
+        <h1 class="text-danger" *ngIf="!flag"> Hacker spotted !! </h1>
+
+        <form #booking="ngForm" *ngIf="flag" (ngSubmit)="onSubmit()" novalidate>
+
+
+            2 way data binding = {{bookingForm | json}}
+
+            <hr>
+            <div class="form-group">
+                <label for="">First Name</label>
+                <input type="text" class="form-control" [class.is-invalid]="firstName.touched && firstName.invalid"
+                    name="firstName" [(ngModel)]="bookingForm.customer.firstName" #firstName="ngModel" required>
+
+                <label class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">First Name is
+                    required.</label>
+            </div>
+            <div class="form-group">
+                <label for="">Surname</label>
+                <input type="text" class="form-control" [class.is-invalid]="
+                surname.touched && surname.invalid" name="surname" [(ngModel)]="bookingForm.customer.lastName"
+                    #surname="ngModel" required>
+
+                <label class="text-danger" [class.d-none]="surname.valid || surname.untouched">Surname is
+                    required.</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Email </label>
+                <input type="text" class="form-control" [class.is-invalid]="email.touched && email.invalid" name="email"
+                    [(ngModel)]="bookingForm.customer.email" #email="ngModel" required>
+
+                <label class="text-danger" [class.d-none]="email.valid || email.untouched">First Name is
+                    required.</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Address</label>
+                <input type="text" class="form-control" [class.is-invalid]="
+                address.touched && address.invalid" name="address" [(ngModel)]="bookingForm.customer.address"
+                    #address="ngModel" required>
+
+                <label class="text-danger" [class.d-none]="address.valid || address.untouched">Address is
+                    required.</label>
+            </div>
+            <div class="form-group">
+                <label for="">Mobile Number</label>
+                <input type="number" class="form-control" [class.is-invalid]="
+                mobile.touched && mobile.invalid" name="mobile" [(ngModel)]="bookingForm.customer.mobile"
+                    #mobile="ngModel" required>
+
+                <label class="text-danger" [class.d-none]="mobile.valid || mobile.untouched">Mobile Number is
+                    required.</label>
+            </div>
+            <div class="form-group">
+                <label for="">Check in date</label>
+                <input (change)="checkDates(checkin.value, checkout.value)" type="date" class="form-control"
+                    [class.is-invalid]="checkin.invalid && checkin.touched" name="checkin"
+                    [(ngModel)]="bookingForm.checkin" #checkin="ngModel" required>
+
+                <label class="text-danger" [class.d-none]="checkin.valid || checkin.untouched">Check in date is
+                    required.</label>
+            </div>
+
+            <div class="form-group">
+                <label for="">Check out date</label>
+                <input (change)="checkDates(checkin.value, checkout.value)" type="date" class="form-control"
+                    [class.is-invalid]="checkout.invalid && checkout.touched" name="checkout"
+                    [(ngModel)]="bookingForm.checkout" #checkout="ngModel" required>
+
+                <label class="text-danger" [class.d-none]="checkout.valid || checkout.untouched">Check out date is
+                    required.</label>
+            </div>
+
+            <label class="text-danger" [class.d-none]="(checkin.pristine || checkout.pristine) || !dateHasError">Please
+                select appropriate
+                dates.</label>
+
+            <div class="form-group">
+                <label for="">Credit card number</label>
+                <input type="number" class="form-control" [class.is-invalid]="
+                credit.touched && credit.invalid" name="credit" [(ngModel)]="bookingForm.credit" #credit="ngModel"
+                    required>
+
+                <label class="text-danger" [class.d-none]="credit.valid || credit.untouched">Credit Card Number is
+                    required.</label>
+            </div> 
+
+
+<button type="reset" class="btn btn-primary" style="margin-bottom: 10px;">Clear</button>
+<button [disabled]="booking.form.invalid" type="submit" class="btn btn-primary"
+    style="margin-bottom: 10px; margin-left: 10px;">
+    Book</button>
+</form>
+
+</div>
+</div>
+
+-->

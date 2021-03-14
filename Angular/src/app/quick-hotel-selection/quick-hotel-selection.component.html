@@ -1,0 +1,35 @@
+<br>
+<table class="table table-hover" *ngIf="hotels!=null && hotels.length!=0;else noHotels" > 
+    <thead
+    class=" table-success">
+        <th scope="col">Hotel Id</th>
+        <th scope="col">Hotel Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Room Type</th>
+        <th scope="col">Rent</th>
+        <th scope="col">Book</th>
+    </thead>
+    <tbody>
+        <tr 
+            *ngFor="let hotel of hotels"
+            class=" table-info">
+            <td>{{hotel.hotelId}}</td>
+            <td>{{hotel.hotelName}}</td>
+            <td>{{hotel.city}}, {{hotel.state}}</td>
+            <td>{{hotel.roomType.roomType}}</td>
+            <td>{{hotel.roomType.rent|currency:'INR':symbol}}</td>
+            <td><a 
+                    [routerLink]="['/booking-form',hotel.hotelId]" >
+                    <button class="btn btn-danger">Book</button>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #noHotels>
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>We are extremely Sorry! But we do not serve in this city.</strong>
+    </div>
+</ng-template>

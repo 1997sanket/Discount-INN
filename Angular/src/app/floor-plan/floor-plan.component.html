@@ -1,0 +1,49 @@
+<br>
+<div class="container jumbotron">
+
+    <div class="text-center" style="margin-top: -60px;">
+        <h3 class="text-primary">Floor Plan</h3>
+        <!--<p class="text-info">Select type of room</p> -->
+    </div>
+
+    <!-- The four columns for displaying 4 images of floor plan -->
+    <div class="row ">
+        <div class="col-md-3 text-center">
+            <span> <img src="../../assets/images/studio1.png" alt="Standard" class="img-thumbnail" style="width:70%"
+                    (mouseenter)="preview($event)">
+                <p>Standard</p>
+            </span>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <span><img src="../../assets/images/studio2.png" alt="Deluxe" class="img-thumbnail" style="width:70%"
+                    (mouseenter)="preview($event)">
+                <p>Deluxe</p>
+            </span>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <span><img src="../../assets/images/studio3.jpg" alt="Premium" class="img-thumbnail" style="width:70%"
+                    (mouseenter)="preview($event)">
+                <p>Premium</p>
+            </span>
+        </div>
+
+        <div class="col-md-3 text-center">
+            <span><img src="../../assets/images/studio4.png" alt="Abroad" class="img-thumbnail" style="width:70%"
+                    (mouseenter)="preview($event)">
+                <p>Abroad</p>
+            </span>
+        </div>
+    </div>
+
+
+    <!-- Enlarged image to be displayed-->
+    <div class="container">
+        <img #enlargedImg class="img-responsive">
+    </div>
+
+
+
+</div>
+<!-- Floor Plan Ends-->

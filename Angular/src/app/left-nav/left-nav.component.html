@@ -1,0 +1,70 @@
+<div class="card text-white bg-warning mb-3" style="max-width: 20rem; margin-top: 20px;">
+    <div class="card-header" style="color: black;">Quick Booking</div>
+    <div class="card-body">
+
+        <form [formGroup]="quickBooking" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="state" style="color: black;">State:</label>
+                <select class="form-control" formControlName="state" (change)="setState($event)">
+                    <option value="">Select state</option>
+                    <option *ngFor="let state of states;let i=index" [value]="states.indexOf(state)">{{state.state}}
+                    </option>
+                </select>
+                <div *ngIf="!state.valid && state.touched">
+                    <label *ngIf="state.errors.required" class="helper-text text-danger">
+                        Please select state
+                    </label>
+                </div>
+            </div>
+
+            <div *ngIf="selectedState!=-1" class="form-group">
+                <label for="city" style="color: black;">City:</label>
+                <select class="form-control" formControlName="city">
+                    <option value="">select city</option>
+                    <option *ngFor="let city of states[selectedState].cities">{{city.city}}</option>
+                </select>
+                <div *ngIf="!city.valid && city.touched">
+                    <label *ngIf="city.errors.required" class="helper-text text-danger">
+                        Please select a city
+                    </label>
+                </div>
+            </div>
+
+            <!--
+
+            <div class="form-group">
+                <label for="mob" style="color: black;">CheckIn Date:</label>
+                <input type="date" class="txtDate form-control" formControlName="checkIn" (blur)="checkDates()"
+                    (change)="checkDates()">
+                <div *ngIf="!checkIn.valid && checkIn.touched">
+                    <label *ngIf="checkIn.errors.required" class="helper-text text-danger">
+                        Check-in Date is required
+                    </label>
+                </div>
+                <label *ngIf="datehasError" class="helper-text text-danger">
+                    {{dateError}}
+                </label>
+            </div>
+
+            
+
+            <div class="form-group">
+                <label for="mob" style="color: black;">CheckOut Date:</label>
+                <input type="date" class="txtDate form-control" formControlName="checkOut" (blur)="checkDates()"
+                    (change)="checkDates()">
+                <div *ngIf="!checkOut.valid && checkOut.touched">
+                    <label *ngIf="checkOut.errors.required" class="helper-text text-danger">
+                        Check-out Date is required
+                    </label>
+                </div>
+            </div>
+
+            -->
+
+            <button [disabled]="!quickBooking.valid || datehasError" class=" btn btn-secondary"
+                type="submit">Submit</button>
+
+        </form>
+    </div>
+</div>

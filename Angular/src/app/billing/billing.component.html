@@ -1,0 +1,57 @@
+<div *ngIf="flag">
+
+    <div class="card border-primary mb-3" style="margin-top: 20px;">
+        <div class="card-header">
+            <h4 class="card-title">Invoice </h4>
+        </div>
+        <div class="card-body">
+
+            <!-- this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.mobile = mobile;
+            this.hotelName = hotelName;
+            this.roomType = roomType;
+            this.checkIn = checkIn;
+            this.checkOut = checkOut;
+            this.mainBookingId = mainBookingId;
+            this.rentPerDay = rentPerDay;
+            this.totalAmount = totalAmount; -->
+
+            <h6>First name : <strong>{{bill.firstName}}</strong></h6> <br>
+            <h6>Last name : <strong>{{bill.lastName}}</strong></h6> <br>
+            <h6>Email : <strong>{{bill.email}}</strong></h6> <br>
+            <h6>Mobile : <strong>{{bill.mobile}}</strong></h6> <br>
+            <h6>Hotel name : <strong>{{bill.hotelName}}</strong></h6> <br>
+            <!-- <h6>Room type : {{bill.roomType}}</h6> <br> -->
+            <h6>Check-in date : <strong>{{bill.checkIn | date}}</strong></h6> <br>
+            <h6>Check-out date : <strong>{{bill.checkOut | date}}</strong></h6> <br>
+            <h6>Booking ID : <strong>{{bill.bookingId}}</strong></h6> <br>
+            <h6>Rent / Day : <strong>₹ {{bill.rentPerDay}}</strong></h6> <br>
+            <h3>Total : <strong>₹ {{ bill.totalAmount}}</strong></h3> <br>
+
+            <br>
+            <button (click)="printPdf()" class="btn btn-primary">Print PDF</button>
+
+            &nbsp;
+
+            <button (click)="emailPdf()" class="btn btn-secondary">Email PDF</button>
+
+            <br>
+            <br>
+
+            <div *ngIf="thankYou" class="alert alert-dismissible alert-success">
+                <button (click)="onXclick()" type="button" class="close" data-dismiss="alert">&times;</button>
+                <h3> Done !</h3>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>

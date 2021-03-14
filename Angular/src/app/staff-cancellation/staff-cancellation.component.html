@@ -1,0 +1,64 @@
+<div *ngIf="flag">
+
+    <!--Display form to Enter booking id-->
+    <div class="card bg-light" style="margin-top: 20px; margin-bottom: 20px;" *ngIf="!ifBidSet">
+        <div class=" card-header">Cancellation</div>
+        <div class="card-body">
+
+
+            <form #checkinform="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+
+                <!-- 2 way data binding = {{bid}} 
+
+                <hr>  -->
+
+                <div class="form-group">
+                    <label for="">Enter Booking Id</label>
+                    <input type="text" class="form-control" [class.is-invalid]=" bookid.touched &&  bookid.invalid"
+                        name=" bid" [(ngModel)]="bid" #bookid="ngModel" required autofocus>
+
+                    <label class="text-danger" [class.d-none]=" bookid.valid ||  bookid.untouched">Booking Id is
+                        required.</label>
+                </div>
+
+                <button [disabled]="checkinform.form.invalid" type="submit" class="btn btn-primary"
+                    style="margin-bottom: 10px;">
+                    Delete
+                </button>
+
+
+
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="ifBidSet">
+        <div class="card border-danger mb-3" style="margin-top: 20px;">
+            <div class="card-header">Cancel</div>
+            <div class="card-body">
+                <h4 class="card-title">Are you sure you want to cancel this booking ?</h4>
+
+            </div>
+        </div>
+
+
+        <button class="btn btn-warning" (click)="onYes()">Yes</button>
+        &nbsp;
+        <button class="btn btn-primary" (click)="onNo()">No</button>
+    </div>
+
+
+    <div *ngIf="deleteConfirmed && !invalidId" class="alert alert-dismissible alert-success" style="margin-top: 20px;">
+        <button type="button" class="close" data-dismiss="alert" (click)="onXclick()">&times;</button>
+        <h5>Cancellation successfull !
+        </h5>
+    </div>
+
+
+    <div *ngIf="invalidId" class="alert alert-dismissible alert-danger" style="margin-top: 20px;">
+        <button type="button" class="close" data-dismiss="alert" (click)="onXclick()">&times;</button>
+        <h4>No such Booking ID exists.</h4>
+    </div>
+
+</div>

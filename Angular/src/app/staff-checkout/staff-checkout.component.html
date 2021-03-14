@@ -1,0 +1,186 @@
+<div *ngIf="flag">
+
+
+    <!--Display form to Enter booking id-->
+    <div class="card bg-light" style="margin-top: 20px;  margin-bottom: 20px;" *ngIf="!ifBidSet">
+        <div class=" card-header">Check Out</div>
+        <div class="card-body">
+
+
+            <form #checkinform="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+
+                <!-- 2 way data binding = {{bid}}
+
+                <hr>  -->
+
+                <div class="form-group">
+                    <label for="">Booking Id</label>
+                    <input type="string" class="form-control" [class.is-invalid]=" bookid.touched &&  bookid.invalid"
+                        name=" bid" [(ngModel)]="bid" #bookid="ngModel" required>
+
+                    <label class="text-danger" [class.d-none]=" bookid.valid ||  bookid.untouched">Booking Id is
+                        required.</label>
+                </div>
+
+                <button [disabled]="checkinform.form.invalid" type="Submit" class="btn btn-primary"
+                    style="margin-bottom: 10px;">
+                    submit
+                </button>
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <!--Display this after entering booking id-->
+    <div *ngIf="ifBidSet">
+
+
+
+
+
+        <div class="card border-info  mb-3" style="margin-top: 20px;">
+            <div class="card-header text-center strong">Hotel Address</div>
+            <div class="card-body">
+                <h4 class="card-title">{{hotel.hotelName}}</h4>
+                <h6> Rent / Day = {{hotel.roomType.rent}}</h6>
+                <p class="card-text">{{hotel.city}}, {{hotel.state}}, {{hotel.pinCode}} | {{hotel.distFromCityCenter}}
+                    km
+                    from
+                    city center</p>
+                <p class="card-text">Email: {{hotel.emailAddress}} | Contact: +91{{hotel.contactNo}} </p>
+            </div>
+        </div>
+
+        <div class="jumbotron" style="margin-top: 20px;" *ngIf="booking!=null;else noBooking">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form [formGroup]="bookingForm1" (ngSubmit)="onCheckout()">
+
+
+                        <input type="hidden" class="form-control" formControlName="xyz">
+
+                        <div class="form-group">
+                            <label for="name">First Name :</label>
+                            <input disabled type="text" class="form-control" formControlName="firstName">
+                            <div *ngIf="!firstName.valid && firstName.touched">
+                                <span *ngIf="firstName.errors.required" class="helper-text text-danger">
+                                    First Name is required.
+                                </span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="name">Last Name :</label>
+                            <input disabled type="text" class="form-control" formControlName="lastName">
+                            <div *ngIf="!lastName.valid && lastName.touched">
+                                <span *ngIf="lastName.errors.required" class="helper-text text-danger">
+                                    Last Name is required.
+                                </span>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="name">Email :</label>
+                            <input disabled type="email" class="form-control" formControlName="email">
+                            <div *ngIf="!email.valid && email.touched">
+                                <span *ngIf="email.errors.required" class="helper-text text-danger">
+                                    Email is required.
+                                </span>
+                                <span *ngIf="email.errors.email" class="helper-text text-danger">
+                                    Invalid email address.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mob">Mobile :</label>
+                            <input disabled type="number" class="form-control" formControlName="mobile">
+                            <div *ngIf="!mobile.valid && mobile.touched">
+                                <span *ngIf="mobile.errors.required" class="helper-text text-danger">
+                                    Mobile is required.
+                                </span>
+                                <span *ngIf="mobile.errors.pattern" class="helper-text text-danger">
+                                    Not a valid mobile number.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addr">Address :</label>
+                            <textarea disabled class="form-control" formControlName="address"></textarea>
+                            <div *ngIf="!address.valid && address.touched">
+                                <span *ngIf="address.errors.required" class="helper-text text-danger">
+                                    Address is required.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mob">Checkin Date :</label>
+                            <input disabled type="date" class="txtDate form-control" formControlName="checkIn"
+                                (blur)="checkDates()" (change)="checkDates()">
+                            <div *ngIf="!checkIn.valid && checkIn.touched">
+                                <span *ngIf="checkIn.errors.required" class="helper-text text-danger">
+                                    Checkin Date is required.
+                                </span>
+                            </div>
+                            <!--<span *ngIf="datehasError" class="helper-text text-danger">
+                                {{dateError}}
+                            </span> -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mob">Checkout Date :</label>
+                            <input type="date" class="txtDate form-control" formControlName="checkOut"
+                                (blur)="checkDates()" (change)="checkDates()">
+                            <div *ngIf="!checkOut.valid && checkOut.touched">
+                                <span *ngIf="checkOut.errors.required" class="helper-text text-danger">
+                                    Checkout Date is required.
+                                </span>
+
+                            </div>
+
+                            <label *ngIf="datehasError" class="text-danger">
+                                {{dateError}}
+                            </label>
+                        </div>
+
+                        <button [disabled]="!bookingForm1.valid || datehasError" class=" btn btn-primary"
+                            type="submit">Check
+                            out</button>
+                        &nbsp;
+                        <!--<button class=" btn btn-warning" type="reset">Reset</button> -->
+
+                        <label *ngIf="invalidCheckout" class="text text-danger">Please enter checkout date.</label>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div *ngIf="showAlert" class="alert alert-dismissible alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong> Booking successfull ! Your Booking Id is {{postedBooking.bookingId}}. </strong>
+            </div>
+
+        </div>
+
+
+        <ng-template #noBooking>
+            <div class="alert alert-dismissible alert-danger">
+                <button (click)="onXclick()" type="button" class="close" data-dismiss="alert">&times;</button>
+                <h4>Sorry there is no customer with the given Booking ID</h4>
+            </div>
+        </ng-template>
+
+    </div>

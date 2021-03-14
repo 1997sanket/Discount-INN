@@ -1,0 +1,122 @@
+<div class="card border-info  mb-3" style="margin-top: 20px;">
+    <div class="card-header text-center strong">Hotel Address</div>
+    <div class="card-body">
+        <h3 class="card-title">{{hotel.hotelName}}</h3>
+        <h5 class="card-text">{{hotel.city}}, {{hotel.state}}, {{hotel.pinCode}} | {{hotel.distFromCityCenter}} km from
+            city center</h5>
+        <p class="card-text">Email: {{hotel.emailAddress}} | Contact: +91{{hotel.contactNo}} </p>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+
+                <div class="form-group">
+                    <label for="name">First Name :</label>
+                    <input type="text" class="form-control" formControlName="firstName">
+                    <div *ngIf="!firstName.valid && firstName.touched">
+                        <label *ngIf="firstName.errors.required" class="helper-text text-danger">
+                            First Name is required.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Last Name :</label>
+                    <input type="text" class="form-control" formControlName="lastName">
+                    <div *ngIf="!lastName.valid && lastName.touched">
+                        <label *ngIf="lastName.errors.required" class="helper-text text-danger">
+                            Last Name is required.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Email :</label>
+                    <input type="email" class="form-control" formControlName="email">
+                    <div *ngIf="!email.valid && email.touched">
+                        <label *ngIf="email.errors.required" class="helper-text text-danger">
+                            Email is required.
+                        </label>
+                        <label *ngIf="email.errors.email" class="helper-text text-danger">
+                            Invalid email address.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mob">Mobile :</label>
+                    <input type="number" class="form-control" formControlName="mobile">
+                    <div *ngIf="!mobile.valid && mobile.touched">
+                        <label *ngIf="mobile.errors.required" class="helper-text text-danger">
+                            Mobile is required.
+                        </label>
+                        <label *ngIf="mobile.errors.pattern" class="helper-text text-danger">
+                            Not a valid mobile number.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="addr">Address :</label>
+                    <textarea class="form-control" formControlName="address"></textarea>
+                    <div *ngIf="!address.valid && address.touched">
+                        <label *ngIf="address.errors.required" class="helper-text text-danger">
+                            Address is required.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="mob">Checkin Date :</label>
+                    <input type="date" class="form-control" formControlName="checkIn" (blur)="checkDates()"
+                        (change)="checkDates()">
+                    <div *ngIf="!checkIn.valid && checkIn.touched">
+                        <label *ngIf="checkIn.errors.required" class="helper-text text-danger">
+                            Checkin Date is required.
+                        </label>
+                    </div>
+                    <label *ngIf="datehasError" class="helper-text text-danger">
+                        {{dateError}}
+                    </label>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="mob">Checkin Date :</label>
+                    <input type="date" class="form-control" formControlName="checkIn" (blur)="checkDates()"
+                        (change)="checkDates()" [min]="getToday()">
+                    <div *ngIf="!checkIn.valid && checkIn.touched">
+                        <label *ngIf="checkIn.errors.required" class="helper-text text-danger">
+                            Checkin Date is required.
+                        </label>
+                    </div>
+                    <label *ngIf="datehasError" class="helper-text text-danger">
+                        {{dateError}}
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="mob">Checkout Date :</label>
+                    <input type="date" class="form-control" formControlName="checkOut" (blur)="checkDates()"
+                        (change)="checkDates()">
+                    <div *ngIf="!checkOut.valid && checkOut.touched">
+                        <label *ngIf="checkOut.errors.required" class="helper-text text-danger">
+                            Checkout Date is required.
+                        </label>
+                    </div>
+                </div>
+
+                <button [disabled]="!bookingForm.valid" class=" btn btn-primary" type="submit">Submit</button>
+                &nbsp;
+                <button class=" btn btn-warning" type="reset">Reset</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <div *ngIf="showAlert" class="alert alert-dismissible alert-success">
+        <button (click)="onXclick()" type="button" class="close" data-dismiss="alert">&times;</button>
+        <h3> Booking successfull ! Your Booking Id is <strong>B0000_{{postedBooking.bookingId}}. </strong></h3>
+    </div>
+    <!--{{dateError}} -->
+</div>
