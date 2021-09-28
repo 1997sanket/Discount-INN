@@ -1,0 +1,11 @@
+1. We have used JWT, Microservices architecture(that's why 2 spring boot server)
+   and Jasper report for PDF generation.
+
+2. Database is in 2NF. 
+
+	Because in Hotel table, we have hotel_id(pk), city, state, pinCode.
+
+	Here city and state are dependent on pinCode and pinCode in turn are dependent on hotel_id.
+	So, transitive dependency exists. So, not in 3NF.
+
+	But it is in 2NF, because we dont have any composite key.
